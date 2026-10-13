@@ -25,8 +25,8 @@ Frameworks used: **SwiftUI**, **AppKit**, **ScreenCaptureKit**, **ImageIO**, **C
 ## Quick start
 
 ```bash
-git clone https://github.com/qokalp/Elva-Screenshot.git
-cd Elva-Screenshot
+git clone https://github.com/qokalp/elva-macos-screenshot.git
+cd elva-macos-screenshot
 
 ./build.sh            # build/Elva Screenshot Tool for macOS.app
 ./build.sh install    # copies it to /Applications and launches it
@@ -197,8 +197,8 @@ Kullanılan framework'ler: **SwiftUI**, **AppKit**, **ScreenCaptureKit**, **Imag
 ## Hızlı başlangıç
 
 ```bash
-git clone https://github.com/qokalp/Elva-Screenshot.git
-cd Elva-Screenshot
+git clone https://github.com/qokalp/elva-macos-screenshot.git
+cd elva-macos-screenshot
 
 ./build.sh            # build/Elva Screenshot Tool for macOS.app
 ./build.sh install    # /Applications'a kopyalar ve başlatır

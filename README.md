@@ -5,7 +5,7 @@
 <h1 align="center">Elva Screenshot Tool for macOS</h1>
 
 <p align="center">
-  <a href="https://github.com/qokalp/Elva-Screenshot/releases/latest/download/Elva-Screenshot.dmg"><b>⬇︎ Download / İndir (DMG)</b></a>
+  <a href="https://github.com/qokalp/elva-macos-screenshot/releases/latest/download/Elva-Screenshot.dmg"><b>⬇︎ Download / İndir (DMG)</b></a>
   &nbsp;·&nbsp; macOS 14 Sonoma+
 </p>
 
