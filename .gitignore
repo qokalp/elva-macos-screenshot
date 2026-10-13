@@ -1,0 +1,14 @@
+# SwiftPM / Xcode
+.build/
+.swiftpm/
+*.xcodeproj/
+xcuserdata/
+DerivedData/
+
+# Derleme çıktıları
+build/
+dist/
+
+# macOS / editör
+.DS_Store
+.vscode/
