@@ -11,7 +11,7 @@
     <key>CFBundleName</key>
     <string>Elva Screenshot</string>
     <key>CFBundleDisplayName</key>
-    <string>Elva Screenshot Tool for MacOS</string>
+    <string>Elva Screenshot Tool for macOS</string>
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.productivity</string>
     <key>NSHumanReadableCopyright</key>

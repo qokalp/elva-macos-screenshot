@@ -1,4 +1,4 @@
-# Elva Screenshot Tool for MacOS — Teknik Doküman
+# Elva Screenshot Tool for macOS — Teknik Doküman
 
 Bu doküman projeyi kaynak koddan derlemek, yapısını anlamak ve geliştirmek isteyenler içindir.
 
@@ -18,7 +18,7 @@ Kullanılan framework'ler: **SwiftUI**, **AppKit**, **ScreenCaptureKit**, **Imag
 git clone https://github.com/qokalp/Elva-Screenshot.git
 cd Elva-Screenshot
 
-./build.sh            # build/Elva Screenshot Tool for MacOS.app
+./build.sh            # build/Elva Screenshot Tool for macOS.app
 ./build.sh install    # /Applications'a kopyalar ve başlatır
 ./build.sh dmg        # dist/Elva-Screenshot.dmg (sürükle-bırak kurulumlu disk görüntüsü)
 ```

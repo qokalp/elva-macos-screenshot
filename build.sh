@@ -1,13 +1,13 @@
 #!/bin/bash
-# Elva Screenshot Tool for MacOS — derleme ve paketleme
+# Elva Screenshot Tool for macOS — derleme ve paketleme
 #
-#   ./build.sh            → build/Elva Screenshot Tool for MacOS.app
+#   ./build.sh            → build/Elva Screenshot Tool for macOS.app
 #   ./build.sh install    → ayrıca /Applications'a kurar ve başlatır
 #   ./build.sh dmg        → ayrıca dist/Elva-Screenshot.dmg (sürükle-bırak kurulum) üretir
 set -euo pipefail
 cd "$(dirname "$0")"
 
-APP_NAME="Elva Screenshot Tool for MacOS"
+APP_NAME="Elva Screenshot Tool for macOS"
 EXECUTABLE="Elva"
 BUNDLE_ID="com.gkoseoglu.ElvaScreenshot"
 VOLUME_NAME="Elva Screenshot"

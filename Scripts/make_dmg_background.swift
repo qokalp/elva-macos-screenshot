@@ -19,7 +19,7 @@ func render(scale: CGFloat) -> Data {
         .draw(in: bounds, angle: -90)
 
     // Üst başlık
-    let title = NSAttributedString(string: "Elva Screenshot Tool for MacOS", attributes: [
+    let title = NSAttributedString(string: "Elva Screenshot Tool for macOS", attributes: [
         .font: NSFont.systemFont(ofSize: 20, weight: .semibold),
         .foregroundColor: NSColor(calibratedWhite: 0.15, alpha: 1),
     ])

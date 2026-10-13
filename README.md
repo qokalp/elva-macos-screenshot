@@ -2,7 +2,7 @@
   <img src="docs/images/icon.png" width="128" alt="Elva ikonu">
 </p>
 
-<h1 align="center">Elva Screenshot Tool for MacOS</h1>
+<h1 align="center">Elva Screenshot Tool for macOS</h1>
 
 <p align="center">
   Mac'iniz için sade ve hızlı bir ekran görüntüsü aracı.<br>
@@ -41,7 +41,7 @@
 
    <img src="docs/images/dmg.png" width="520" alt="Elva'yı Applications klasörüne sürükleyin">
 
-4. Uygulamalar klasöründen **Elva Screenshot Tool for MacOS**'u açın.
+4. Uygulamalar klasöründen **Elva Screenshot Tool for macOS**'u açın.
    Elva bir menü çubuğu uygulamasıdır: Dock'ta görünmez, ekranın sağ üstündeki menü çubuğunda bir kamera ikonu belirir.
 
 > **“Uygulama açılamıyor” uyarısı görürseniz:** Sistem Ayarları › Gizlilik ve Güvenlik bölümüne gidin, sayfanın altındaki Elva satırında **“Yine de Aç”** düğmesine basın. Bunu yalnızca ilk açılışta bir kez yapmanız gerekir.
