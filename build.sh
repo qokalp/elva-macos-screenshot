@@ -4,6 +4,8 @@
 #   ./build.sh            → build/Elva Screenshot Tool for macOS.app
 #   ./build.sh install    → ayrıca /Applications'a kurar ve başlatır
 #   ./build.sh dmg        → ayrıca dist/Elva-Screenshot.dmg (sürükle-bırak kurulum) üretir
+#   ./build.sh release    → dmg + Apple noter onayı (notarization) ve stapling
+#                           NOTARY_PROFILE (varsayılan: elva-notary) adlı notarytool profili gerekir
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -13,6 +15,8 @@ BUNDLE_ID="com.gkoseoglu.ElvaScreenshot"
 VOLUME_NAME="Elva Screenshot"
 DMG_NAME="Elva-Screenshot.dmg"
 APP="build/$APP_NAME.app"
+NOTARY_PROFILE="${NOTARY_PROFILE:-elva-notary}"
+MODE="${1:-}"
 LSREGISTER=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister
 
 echo "▸ Derleniyor (release)…"
@@ -38,7 +42,10 @@ SIGN_IDENTITY="${SIGN_IDENTITY:-$(security find-identity -v -p codesigning | gre
 SIGN_IDENTITY="${SIGN_IDENTITY:-$(security find-identity -v -p codesigning | grep -m1 '"Apple Development' | sed -E 's/.*"(.*)"/\1/' || true)}"
 if [ -n "$SIGN_IDENTITY" ]; then
     echo "▸ İmzalanıyor: $SIGN_IDENTITY"
-    codesign --force --options runtime --timestamp=none --sign "$SIGN_IDENTITY" --identifier "$BUNDLE_ID" "$APP"
+    # Noter onayı güvenli zaman damgası ister; günlük derlemelerde ağ gerektirmesin diye yalnızca release'te.
+    TIMESTAMP_FLAG="--timestamp=none"
+    [ "$MODE" = "release" ] && TIMESTAMP_FLAG="--timestamp"
+    codesign --force --options runtime $TIMESTAMP_FLAG --sign "$SIGN_IDENTITY" --identifier "$BUNDLE_ID" "$APP"
 else
     echo "▸ İmzalanıyor (ad-hoc)"
     codesign --force --sign - --identifier "$BUNDLE_ID" "$APP"
@@ -49,7 +56,30 @@ fi
 
 echo "✓ Hazır: $APP"
 
-case "${1:-}" in
+notarize() {
+    # $1: gönderilecek dosya (.zip ya da .dmg)
+    echo "▸ Noter onayına gönderiliyor: $(basename "$1") (birkaç dakika sürebilir)…"
+    xcrun notarytool submit "$1" --keychain-profile "$NOTARY_PROFILE" --wait
+}
+
+if [ "$MODE" = "release" ]; then
+    case "$SIGN_IDENTITY" in
+        "Developer ID Application"*) ;;
+        *) echo "✗ Noter onayı için Developer ID Application sertifikası gerekli"; exit 1 ;;
+    esac
+    xcrun notarytool history --keychain-profile "$NOTARY_PROFILE" >/dev/null 2>&1 || {
+        echo "✗ '$NOTARY_PROFILE' notarytool profili bulunamadı."
+        echo "  Oluşturmak için: xcrun notarytool store-credentials \"$NOTARY_PROFILE\" --apple-id <apple-id> --team-id <team-id>"
+        exit 1
+    }
+    ZIP="build/$EXECUTABLE-notarize.zip"
+    ditto -c -k --keepParent "$APP" "$ZIP"
+    notarize "$ZIP"
+    rm -f "$ZIP"
+    xcrun stapler staple "$APP"
+fi
+
+case "$MODE" in
 install)
     pkill -x "$EXECUTABLE" 2>/dev/null || true
     rm -rf "/Applications/$APP_NAME.app"
@@ -57,7 +87,7 @@ install)
     open "/Applications/$APP_NAME.app"
     echo "✓ /Applications/$APP_NAME.app kuruldu ve başlatıldı"
     ;;
-dmg)
+dmg|release)
     echo "▸ DMG hazırlanıyor…"
     STAGE="build/dmg-stage"
     RW="build/dmg-rw.dmg"
@@ -73,7 +103,12 @@ dmg)
     # Aynı isimde bağlı bir disk varsa ayır.
     [ -d "/Volumes/$VOLUME_NAME" ] && hdiutil detach "/Volumes/$VOLUME_NAME" -force >/dev/null || true
 
-    hdiutil create -srcfolder "$STAGE" -volname "$VOLUME_NAME" -fs HFS+ -format UDRW -ov "$RW" >/dev/null
+    # Spotlight vb. klasörü o an tutuyorsa "kaynak meşgul" hatası verebilir; birkaç kez dene.
+    for attempt in 1 2 3 4 5; do
+        hdiutil create -srcfolder "$STAGE" -volname "$VOLUME_NAME" -fs HFS+ -format UDRW -ov "$RW" >/dev/null && break
+        [ "$attempt" = 5 ] && { echo "✗ DMG oluşturulamadı"; exit 1; }
+        sleep 3
+    done
     MOUNT_DIR="$(hdiutil attach -readwrite -noverify -noautoopen "$RW" | grep -o '/Volumes/.*$')"
 
     # Finder penceresi düzeni: arka plan, ikon boyutu, konumlar.
@@ -118,7 +153,12 @@ APPLESCRIPT
     hdiutil convert "$RW" -format UDZO -imagekey zlib-level=9 -o "dist/$DMG_NAME" >/dev/null
     rm -rf "$RW" "$STAGE"
     if [ -n "$SIGN_IDENTITY" ]; then
-        codesign --force --sign "$SIGN_IDENTITY" "dist/$DMG_NAME"
+        codesign --force $TIMESTAMP_FLAG --sign "$SIGN_IDENTITY" "dist/$DMG_NAME"
+    fi
+    if [ "$MODE" = "release" ]; then
+        notarize "dist/$DMG_NAME"
+        xcrun stapler staple "dist/$DMG_NAME"
+        spctl -a -t open --context context:primary-signature -v "dist/$DMG_NAME"
     fi
     echo "✓ DMG: dist/$DMG_NAME"
     ;;

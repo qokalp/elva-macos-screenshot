@@ -50,7 +50,7 @@ Elva speaks **English and Turkish**. It automatically uses your Mac's language (
 4. Open **Elva Screenshot Tool for macOS** from your Applications folder.
    Elva lives in the menu bar: it doesn't appear in the Dock. Instead, a camera icon shows up at the top right of your screen.
 
-> **If you see an “app can't be opened” warning:** open System Settings › Privacy & Security, scroll down, and click **“Open Anyway”** next to Elva. You only need to do this once, the first time you open it.
+> The first time you open it, macOS asks whether you're sure you want to open an app downloaded from the internet. Click **Open**. Elva is signed and notarized by Apple.
 
 ### Screen recording permission
 
@@ -138,6 +138,8 @@ Quit Elva, then drag it from your Applications folder to the Trash.
 
 For developers: building from source and the project structure are described in [docs/TECHNICAL.md](docs/TECHNICAL.md#english).
 
+Elva is open source under the [MIT License](LICENSE).
+
 <p align="right"><a href="#turkce">Türkçe ↓</a></p>
 
 ---
@@ -177,7 +179,7 @@ Elva **Türkçe ve İngilizce** destekler. Mac'inizin diline göre kendiliğinde
 4. Uygulamalar klasöründen **Elva Screenshot Tool for macOS**'u açın.
    Elva bir menü çubuğu uygulamasıdır: Dock'ta görünmez, ekranın sağ üstündeki menü çubuğunda bir kamera ikonu belirir.
 
-> **“Uygulama açılamıyor” uyarısı görürseniz:** Sistem Ayarları › Gizlilik ve Güvenlik bölümüne gidin, sayfanın altındaki Elva satırında **“Yine de Aç”** düğmesine basın. Bunu yalnızca ilk açılışta bir kez yapmanız gerekir.
+> İlk açılışta macOS, internetten indirilen bir uygulamayı açmak isteyip istemediğinizi sorar. **Aç**'a tıklayın. Elva, Apple tarafından imzalanmış ve onaylanmıştır (notarized).
 
 ### Ekran kaydı izni
 
@@ -264,5 +266,7 @@ Ekran kaydı izni verilmemiş demektir. Yukarıdaki *Ekran kaydı izni* adımlar
 Elva'dan çıkın, Uygulamalar klasöründeki Elva'yı Çöp Sepeti'ne sürükleyin.
 
 Geliştiriciler için: kaynak koddan derleme ve proje yapısı [docs/TECHNICAL.md](docs/TECHNICAL.md#turkce) dosyasında anlatılıyor.
+
+Elva, [MIT Lisansı](LICENSE) ile açık kaynaklıdır.
 
 <p align="right"><a href="#english">English ↑</a></p>
