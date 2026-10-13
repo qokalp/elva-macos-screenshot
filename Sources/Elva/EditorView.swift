@@ -18,7 +18,7 @@ private struct EditorContent: View {
         let size = model.displaySize(for: doc)
         VStack(spacing: EditorWindowController.gap) {
             ZStack {
-                CanvasRepresentable(document: doc, settings: settings) { model.showToast("Panoya kopyalandı") }
+                CanvasRepresentable(document: doc, settings: settings) { model.showToast(L10n.t("Copied to clipboard", "Panoya kopyalandı")) }
                     .frame(width: size.width, height: size.height)
                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
                     .overlay(
@@ -63,7 +63,7 @@ private struct EditorToolbar: View {
 
     var body: some View {
         HStack(spacing: 2) {
-            ToolbarIcon(symbol: "xmark", help: "Kapat (Esc)") { model.requestClose() }
+            ToolbarIcon(symbol: "xmark", help: L10n.t("Close (Esc)", "Kapat (Esc)")) { model.requestClose() }
 
             separator
 
@@ -82,46 +82,46 @@ private struct EditorToolbar: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .help("Renk ve \(settings.sizeLabel.lowercased())")
+            .help(L10n.t("Color and \(settings.sizeLabel.lowercased())", "Renk ve \(settings.sizeLabel.lowercased())"))
             .popover(isPresented: $showStyle, arrowEdge: .bottom) {
                 StylePopover(settings: settings)
             }
 
             separator
 
-            ToolbarIcon(symbol: "arrow.uturn.backward", help: "Geri al (⌘Z)") { doc.undo() }
+            ToolbarIcon(symbol: "arrow.uturn.backward", help: L10n.t("Undo (⌘Z)", "Geri al (⌘Z)")) { doc.undo() }
                 .disabled(!doc.canUndo)
-            ToolbarIcon(symbol: "arrow.uturn.forward", help: "Yinele (⇧⌘Z)") { doc.redo() }
+            ToolbarIcon(symbol: "arrow.uturn.forward", help: L10n.t("Redo (⇧⌘Z)", "Yinele (⇧⌘Z)")) { doc.redo() }
                 .disabled(!doc.canRedo)
 
             if model.isBatch {
                 separator
-                ToolbarIcon(symbol: "chevron.left", help: "Önceki (⌘←)") { model.go(-1) }
+                ToolbarIcon(symbol: "chevron.left", help: L10n.t("Previous (⌘←)", "Önceki (⌘←)")) { model.go(-1) }
                     .disabled(model.index == 0)
                     .keyboardShortcut(.leftArrow, modifiers: .command)
                 Text("\(model.index + 1)/\(model.documents.count)")
                     .font(.system(size: 11, weight: .medium).monospacedDigit())
                     .foregroundStyle(.white.opacity(0.8))
                     .frame(minWidth: 30)
-                ToolbarIcon(symbol: "chevron.right", help: "Sonraki (⌘→)") { model.go(1) }
+                ToolbarIcon(symbol: "chevron.right", help: L10n.t("Next (⌘→)", "Sonraki (⌘→)")) { model.go(1) }
                     .disabled(model.index == model.documents.count - 1)
                     .keyboardShortcut(.rightArrow, modifiers: .command)
             }
 
             separator
 
-            ToolbarIcon(symbol: "doc.on.doc", help: "Kopyala (⇧⌘C)") { model.copyCurrent() }
+            ToolbarIcon(symbol: "doc.on.doc", help: L10n.t("Copy (⇧⌘C)", "Kopyala (⇧⌘C)")) { model.copyCurrent() }
                 .keyboardShortcut("c", modifiers: [.command, .shift])
 
-            ToolbarIcon(symbol: "square.and.arrow.down", help: "Kaydet (⌘S PNG · ⇧⌘S JPG)") {
+            ToolbarIcon(symbol: "square.and.arrow.down", help: L10n.t("Save (⌘S PNG · ⇧⌘S JPG)", "Kaydet (⌘S PNG · ⇧⌘S JPG)")) {
                 var items: [PopupMenu.Item] = [
-                    .init("PNG olarak kaydet…") { model.saveCurrent(as: .png) },
-                    .init("JPG olarak kaydet…") { model.saveCurrent(as: .jpg) },
+                    .init(L10n.t("Save as PNG…", "PNG olarak kaydet…")) { model.saveCurrent(as: .png) },
+                    .init(L10n.t("Save as JPG…", "JPG olarak kaydet…")) { model.saveCurrent(as: .jpg) },
                 ]
                 if model.isBatch {
                     items.append(.separator)
-                    items.append(.init("Tümünü PNG olarak kaydet…") { model.saveAll(as: .png) })
-                    items.append(.init("Tümünü JPG olarak kaydet…") { model.saveAll(as: .jpg) })
+                    items.append(.init(L10n.t("Save All as PNG…", "Tümünü PNG olarak kaydet…")) { model.saveAll(as: .png) })
+                    items.append(.init(L10n.t("Save All as JPG…", "Tümünü JPG olarak kaydet…")) { model.saveAll(as: .jpg) })
                 }
                 PopupMenu.show(items)
             }
@@ -133,10 +133,10 @@ private struct EditorToolbar: View {
             .frame(width: 0, height: 0)
             .opacity(0)
 
-            ToolbarIcon(symbol: "archivebox", help: "Arşivle (⌘E)") { model.archiveCurrent() }
+            ToolbarIcon(symbol: "archivebox", help: L10n.t("Archive (⌘E)", "Arşivle (⌘E)")) { model.archiveCurrent() }
                 .keyboardShortcut("e", modifiers: .command)
             if model.isBatch {
-                ToolbarIcon(symbol: "archivebox.fill", help: "Tümünü arşivle") { model.archiveAll() }
+                ToolbarIcon(symbol: "archivebox.fill", help: L10n.t("Archive All", "Tümünü arşivle")) { model.archiveAll() }
             }
         }
         .padding(.horizontal, 6)

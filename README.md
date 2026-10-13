@@ -1,5 +1,3 @@
-<p align="right"><b>English</b> · <a href="README.tr.md">Türkçe</a></p>
-
 <p align="center">
   <img src="docs/images/icon.png" width="128" alt="Elva icon">
 </p>
@@ -7,24 +5,30 @@
 <h1 align="center">Elva Screenshot Tool for macOS</h1>
 
 <p align="center">
-  A simple, fast screenshot tool for your Mac.<br>
-  Capture your whole screen or just the part you need, draw, write and highlight on it, and keep it in your archive.
+  <a href="https://github.com/qokalp/Elva-Screenshot/releases/latest/download/Elva-Screenshot.dmg"><b>⬇︎ Download / İndir (DMG)</b></a>
+  &nbsp;·&nbsp; macOS 14 Sonoma+
 </p>
 
 <p align="center">
-  <a href="https://github.com/qokalp/Elva-Screenshot/releases/latest/download/Elva-Screenshot.dmg"><b>⬇︎ Download Elva (DMG)</b></a>
-  &nbsp;·&nbsp; Requires macOS 14 Sonoma or later
+  <a href="#english"><b>English</b></a> &nbsp;|&nbsp; <a href="#turkce"><b>Türkçe</b></a>
 </p>
-
-<p align="center">
-  <img src="docs/images/popover.png" width="360" alt="Elva window in the menu bar">
-  &nbsp;&nbsp;
-  <img src="docs/images/editor.png" width="560" alt="Elva editing window">
-</p>
-
-> **Note:** The app's interface is currently in Turkish. This guide shows each button's Turkish label with its English meaning.
 
 ---
+
+<a id="english"></a>
+
+# English
+
+A simple, fast screenshot tool for your Mac.
+Capture your whole screen or just the part you need, draw, write and highlight on it, and keep it in your archive.
+
+<p align="center">
+  <img src="docs/images/popover-en.png" width="340" alt="Elva window in the menu bar">
+  &nbsp;&nbsp;
+  <img src="docs/images/editor-en.png" width="540" alt="Elva editing window">
+</p>
+
+Elva speaks **English and Turkish**. It automatically uses your Mac's language (Turkish if your Mac is set to Turkish, English otherwise).
 
 ## What can you do?
 
@@ -35,15 +39,13 @@
 - 🗂️ **A good-looking archive:** all your screenshots in the menu bar, laid out like Polaroid photos
 - ⌨️ **Keyboard shortcuts:** capture without opening the menu
 
----
-
 ## Installation
 
-1. Click the **“Download Elva”** link above.
+1. Click the **“Download”** link at the top of this page.
 2. Double-click the downloaded **Elva-Screenshot.dmg** file.
 3. In the window that opens, drag the Elva icon onto the **Applications** folder.
 
-   <img src="docs/images/dmg.png" width="520" alt="Drag Elva into the Applications folder">
+   <img src="docs/images/dmg.png" width="500" alt="Drag Elva into the Applications folder">
 
 4. Open **Elva Screenshot Tool for macOS** from your Applications folder.
    Elva lives in the menu bar: it doesn't appear in the Dock. Instead, a camera icon shows up at the top right of your screen.
@@ -54,11 +56,9 @@
 
 macOS asks for permission before any app can take screenshots. On your first capture:
 
-1. Click **Sistem Ayarlarını Aç** (Open System Settings) in the window that appears.
+1. Click **Open System Settings** in the window that appears.
 2. In the **Screen & System Audio Recording** list, turn on the switch next to Elva.
-3. Quit and reopen Elva (menu bar icon › ⚙︎ › Quit, then open it again from Applications).
-
----
+3. Quit and reopen Elva (menu bar icon › ⚙︎ › Quit Elva, then open it again from Applications).
 
 ## User guide
 
@@ -68,10 +68,10 @@ Click the **camera icon** in the menu bar. You'll see four buttons at the top:
 
 | Button | What it does |
 |---|---|
-| **Tam Ekran** (Full Screen) | Captures the whole screen your mouse is on. |
-| **Kare** (Rectangle) | The screen dims; drag with the mouse to select a rectangular area. |
+| **Full Screen** | Captures the whole screen your mouse is on. |
+| **Rectangle** | The screen dims; drag with the mouse to select a rectangular area. |
 | **Lasso** | Draw freely with the mouse to select any shape you like. |
-| **Gecikme** (Timer) | Choose how long to wait before capturing (Off / 3 / 5 / 10 seconds). A countdown appears in the middle of the screen. |
+| **Timer** | Choose how long to wait before capturing (No delay / 3 / 5 / 10 seconds). A countdown appears in the middle of the screen. |
 
 Press **Esc** to cancel while selecting.
 
@@ -118,11 +118,9 @@ Every image you archive appears at the bottom of the menu bar window.
 
 ### Settings (⚙︎)
 
-- **Arşiv klasörünü aç** (Open archive folder): shows the folder where your archived images are stored.
-- **Oturum açılışında başlat** (Open at login): starts Elva automatically when you turn on your Mac.
-- **Çıkış** (Quit): closes Elva.
-
----
+- **Open Archive Folder:** shows the folder where your archived images are stored.
+- **Open at Login:** starts Elva automatically when you turn on your Mac.
+- **Quit Elva:** closes Elva.
 
 ## Frequently asked questions
 
@@ -133,11 +131,138 @@ If your menu bar is crowded, the icon may be hidden. Try removing a few other ic
 Screen recording permission hasn't been granted. Follow the *Screen recording permission* steps above and restart Elva.
 
 **Where are my archived images kept?**
-Use ⚙︎ › **Open archive folder** to see them. Images are stored only on your own Mac and are never sent anywhere.
+Use ⚙︎ › **Open Archive Folder** to see them. Images are stored only on your own Mac and are never sent anywhere.
 
 **How do I uninstall Elva?**
 Quit Elva, then drag it from your Applications folder to the Trash.
 
+For developers: building from source and the project structure are described in [docs/TECHNICAL.md](docs/TECHNICAL.md#english).
+
+<p align="right"><a href="#turkce">Türkçe ↓</a></p>
+
 ---
 
-For developers: building from source and the project structure are described in [docs/TECHNICAL.md](docs/TECHNICAL.md).
+<a id="turkce"></a>
+
+# Türkçe
+
+Mac'iniz için sade ve hızlı bir ekran görüntüsü aracı.
+Ekranın tamamını ya da istediğiniz bir bölümünü yakalayın, üzerine çizin, yazın, vurgulayın ve arşivinizde saklayın.
+
+<p align="center">
+  <img src="docs/images/popover-tr.png" width="340" alt="Menü çubuğundaki Elva penceresi">
+  &nbsp;&nbsp;
+  <img src="docs/images/editor-tr.png" width="540" alt="Elva düzenleme penceresi">
+</p>
+
+Elva **Türkçe ve İngilizce** destekler. Mac'inizin diline göre kendiliğinden açılır (Mac'iniz Türkçe ise Türkçe, değilse İngilizce).
+
+## Neler yapabilirsiniz?
+
+- 📸 **Üç farklı çekim:** tüm ekran, kare seçim ya da elle serbest çizerek (lasso) seçim
+- ⏱️ **Gecikmeli çekim:** 3, 5 veya 10 saniye sonra otomatik çekim
+- ✏️ **Üzerine çizin:** kalem, yazı ve fosforlu kalem (vurgulayıcı)
+- 📋 **Tek tıkla paylaşın:** kopyalayın, PNG/JPG olarak kaydedin veya arşivleyin
+- 🗂️ **Şık bir arşiv:** tüm ekran görüntüleriniz menü çubuğunda, polaroid fotoğraflar gibi
+- ⌨️ **Klavye kısayolları:** menüyü açmadan bile çekim yapın
+
+## Kurulum
+
+1. Bu sayfanın en üstündeki **“İndir”** bağlantısına tıklayın.
+2. İnen **Elva-Screenshot.dmg** dosyasını çift tıklayarak açın.
+3. Açılan pencerede Elva ikonunu **Applications (Uygulamalar)** klasörüne sürükleyin.
+
+   <img src="docs/images/dmg.png" width="500" alt="Elva'yı Applications klasörüne sürükleyin">
+
+4. Uygulamalar klasöründen **Elva Screenshot Tool for macOS**'u açın.
+   Elva bir menü çubuğu uygulamasıdır: Dock'ta görünmez, ekranın sağ üstündeki menü çubuğunda bir kamera ikonu belirir.
+
+> **“Uygulama açılamıyor” uyarısı görürseniz:** Sistem Ayarları › Gizlilik ve Güvenlik bölümüne gidin, sayfanın altındaki Elva satırında **“Yine de Aç”** düğmesine basın. Bunu yalnızca ilk açılışta bir kez yapmanız gerekir.
+
+### Ekran kaydı izni
+
+Mac, ekran görüntüsü alan her uygulamadan izin ister. İlk çekimde:
+
+1. Çıkan pencerede **Sistem Ayarlarını Aç**'a tıklayın.
+2. **Ekran ve Sistem Sesi Kaydı** listesinde Elva'nın yanındaki anahtarı açın.
+3. Elva'yı kapatıp yeniden açın (menü çubuğu ikonu › ⚙︎ › Elva'dan Çık, sonra Uygulamalar klasöründen tekrar açın).
+
+## Kullanım kılavuzu
+
+### Ekran görüntüsü almak
+
+Menü çubuğundaki **kamera ikonuna** tıklayın. Üstte dört düğme göreceksiniz:
+
+| Düğme | Ne yapar? |
+|---|---|
+| **Tam Ekran** | Farenin bulunduğu ekranın tamamını yakalar. |
+| **Kare** | Ekran kararır; fareyle sürükleyerek dikdörtgen bir alan seçin. |
+| **Lasso** | Fareyle serbestçe çizerek istediğiniz şekilde bir alan seçin. |
+| **Gecikme** | Çekimden önce beklenecek süreyi seçin (Gecikme yok / 3 / 5 / 10 saniye). Ekranın ortasında geri sayım görünür. |
+
+Seçim yaparken vazgeçmek isterseniz **Esc** tuşuna basın.
+
+### Klavye kısayolları
+
+| Kısayol | İşlem |
+|---|---|
+| **Control + Shift + 1** | Tam ekran |
+| **Control + Shift + 2** | Kare seçim |
+| **Control + Shift + 3** | Lasso seçim |
+
+### Düzenleme penceresi
+
+Her çekimden sonra görüntü, altında küçük bir araç çubuğuyla açılır:
+
+| Simge | Ne yapar? |
+|---|---|
+| ✕ | Pencereyi kapatır (**Esc** de olur) |
+| ✏️ Kalem | Serbest çizim |
+| Aa Yazı | Görüntüye tıklayın, yazınızı yazın, **Enter**'a basın |
+| 🖍️ Vurgulayıcı | Yarı saydam fosforlu kalem. **Shift**'e basılı tutarsanız dümdüz çizgi çizer |
+| ● Renk | Renk ve kalınlığı / yazı boyutunu seçin |
+| ↶ ↷ | Geri al / yinele |
+| ⧉ Kopyala | Görüntüyü panoya kopyalar; istediğiniz yere yapıştırabilirsiniz |
+| ⤓ Kaydet | PNG veya JPG olarak bilgisayarınıza kaydeder |
+| 🗃️ Arşivle | Görüntüyü Elva arşivine ekler |
+
+Pencereyi taşımak için araç çubuğunun boş bir yerinden tutup sürükleyin.
+
+### Arşiv
+
+Menü çubuğundaki pencerenin alt kısmında arşivlediğiniz tüm görüntüler bulunur.
+
+- Bir görüntünün **üzerine gelin**: büyür ve düzleşir.
+- **Tıklayın**: düzenleme penceresinde açılır.
+- **Sağ tıklayın**: kopyala, kaydet, Finder'da göster ya da sil.
+- Masaüstüne veya bir e-postaya **sürükleyip bırakabilirsiniz**.
+
+**Birden çok görüntüyle çalışmak:** ✓ (Seç) düğmesine basın, görüntüleri seçin. Ardından:
+
+- ✏️ hepsini düzenleme penceresinde açar (araç çubuğundaki ‹ › oklarıyla aralarında gezinirsiniz),
+- ⤓ hepsini tek seferde PNG ya da JPG olarak bir klasöre kaydeder,
+- 🗑️ seçilenleri siler.
+
+### Ayarlar (⚙︎)
+
+- **Arşiv klasörünü aç:** Arşivlenmiş görüntülerin bulunduğu klasörü gösterir.
+- **Oturum açılışında başlat:** Mac'inizi açtığınızda Elva otomatik başlar.
+- **Elva'dan Çık:** Elva'yı kapatır.
+
+## Sık sorulan sorular
+
+**Menü çubuğunda Elva ikonunu göremiyorum.**
+Menü çubuğunuz çok doluysa ikon gizlenmiş olabilir. Birkaç başka ikonu kaldırmayı deneyin ya da Elva'yı Uygulamalar klasöründen yeniden açın.
+
+**Ekran görüntüsü yerine boş ya da yalnızca masaüstü görüntüsü çıkıyor.**
+Ekran kaydı izni verilmemiş demektir. Yukarıdaki *Ekran kaydı izni* adımlarını uygulayın ve Elva'yı yeniden başlatın.
+
+**Arşivlenen görüntüler nerede duruyor?**
+⚙︎ › **Arşiv klasörünü aç** ile görebilirsiniz. Görüntüler yalnızca kendi Mac'inizde saklanır; hiçbir yere gönderilmez.
+
+**Elva'yı nasıl kaldırırım?**
+Elva'dan çıkın, Uygulamalar klasöründeki Elva'yı Çöp Sepeti'ne sürükleyin.
+
+Geliştiriciler için: kaynak koddan derleme ve proje yapısı [docs/TECHNICAL.md](docs/TECHNICAL.md#turkce) dosyasında anlatılıyor.
+
+<p align="right"><a href="#english">English ↑</a></p>

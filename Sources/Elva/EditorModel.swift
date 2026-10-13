@@ -80,7 +80,7 @@ final class EditorSettings: ObservableObject {
         }
     }
 
-    var sizeLabel: String { tool == .text ? "Boyut" : "Kalınlık" }
+    var sizeLabel: String { tool == .text ? L10n.t("Size", "Boyut") : L10n.t("Thickness", "Kalınlık") }
 }
 
 @MainActor
@@ -136,7 +136,7 @@ final class EditorModel: ObservableObject {
     func copyCurrent() {
         commitPendingText()
         ImageIOHelper.copyToPasteboard(current.rendered())
-        showToast("Panoya kopyalandı")
+        showToast(L10n.t("Copied to clipboard", "Panoya kopyalandı"))
     }
 
     func saveCurrent(as format: ImageFormat) {
@@ -150,7 +150,7 @@ final class EditorModel: ObservableObject {
             guard response == .OK, let url = panel.url else { return }
             do {
                 try ImageIOHelper.write(doc.rendered(), to: url, format: format)
-                self?.showToast("\(format.title) olarak kaydedildi")
+                self?.showToast(L10n.t("Saved as \(format.title)", "\(format.title) olarak kaydedildi"))
             } catch {
                 self?.presentError(error)
             }
@@ -160,13 +160,13 @@ final class EditorModel: ObservableObject {
     func archiveCurrent() {
         commitPendingText()
         archive(current)
-        showToast("Arşivlendi")
+        showToast(L10n.t("Archived", "Arşivlendi"))
     }
 
     func archiveAll() {
         commitPendingText()
         documents.forEach(archive)
-        showToast("\(documents.count) görüntü arşivlendi")
+        showToast(L10n.t("\(documents.count) images archived", "\(documents.count) görüntü arşivlendi"))
     }
 
     func saveAll(as format: ImageFormat) {
@@ -176,13 +176,13 @@ final class EditorModel: ObservableObject {
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
         panel.canCreateDirectories = true
-        panel.prompt = "Buraya Kaydet"
-        panel.message = "\(docs.count) görüntü \(format.title) olarak kaydedilecek"
+        panel.prompt = L10n.t("Save Here", "Buraya Kaydet")
+        panel.message = L10n.t("\(docs.count) images will be saved as \(format.title)", "\(docs.count) görüntü \(format.title) olarak kaydedilecek")
         panel.begin { [weak self] response in
             guard response == .OK, let dir = panel.url else { return }
             do {
                 let count = try BatchExporter.export(docs.map { ($0.createdAt, $0.rendered()) }, to: dir, format: format)
-                self?.showToast("\(count) görüntü kaydedildi")
+                self?.showToast(L10n.t("\(count) images saved", "\(count) görüntü kaydedildi"))
             } catch {
                 self?.presentError(error)
             }

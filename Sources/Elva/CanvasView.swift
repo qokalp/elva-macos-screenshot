@@ -150,7 +150,7 @@ final class CanvasView: NSView, NSTextFieldDelegate, NSMenuItemValidation {
         field.drawsBackground = false
         field.backgroundColor = .clear
         field.focusRingType = .none
-        field.placeholderString = "Yazı…"
+        field.placeholderString = L10n.t("Text…", "Yazı…")
         field.delegate = self
         field.cell?.isScrollable = true
         field.cell?.wraps = false

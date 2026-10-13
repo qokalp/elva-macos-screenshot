@@ -33,10 +33,10 @@ struct ArchiveView: View {
 
     private var captureBar: some View {
         HStack(spacing: 4) {
-            CaptureButton(title: "Tam Ekran", symbol: "display") {
+            CaptureButton(title: L10n.t("Full Screen", "Tam Ekran"), symbol: "display") {
                 AppCoordinator.shared.capture(.fullScreen)
             }
-            CaptureButton(title: "Kare", symbol: "rectangle.dashed") {
+            CaptureButton(title: L10n.t("Rectangle", "Kare"), symbol: "rectangle.dashed") {
                 AppCoordinator.shared.capture(.rectangle)
             }
             CaptureButton(title: "Lasso", symbol: "lasso") {
@@ -45,15 +45,15 @@ struct ArchiveView: View {
 
             Divider().frame(height: 34).padding(.horizontal, 2)
 
-            CaptureButton(title: delay == 0 ? "Gecikme" : "\(delay) sn", symbol: "timer",
+            CaptureButton(title: delay == 0 ? L10n.t("Timer", "Gecikme") : L10n.t("\(delay) s", "\(delay) sn"), symbol: "timer",
                           tint: delay == 0 ? nil : .accentColor) {
                 PopupMenu.show(CaptureDelay.options.map { sec in
-                    let title = sec == 0 ? "Gecikme yok" : "\(sec) saniye"
+                    let title = sec == 0 ? L10n.t("No delay", "Gecikme yok") : L10n.t("\(sec) seconds", "\(sec) saniye")
                     return PopupMenu.Item((sec == delay ? "✓  " : "     ") + title) { delay = sec }
                 })
             }
             .frame(width: 64)
-            .help("Gecikmeli çekim")
+            .help(L10n.t("Delayed capture", "Gecikmeli çekim"))
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
@@ -64,33 +64,33 @@ struct ArchiveView: View {
     private var archiveBar: some View {
         HStack(spacing: 8) {
             if selecting {
-                Text("\(selection.count) seçili")
+                Text(L10n.t("\(selection.count) selected", "\(selection.count) seçili"))
                     .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(.secondary)
-                Button(selection.count == store.items.count ? "Hiçbiri" : "Tümü") {
+                Button(selection.count == store.items.count ? L10n.t("None", "Hiçbiri") : L10n.t("All", "Tümü")) {
                     selection = selection.count == store.items.count ? [] : Set(store.items.map(\.id))
                 }
                 .buttonStyle(.link)
                 .font(.system(size: 11))
                 Spacer()
                 Group {
-                    BarIcon(symbol: "pencil.tip", help: "Düzenle") {
+                    BarIcon(symbol: "pencil.tip", help: L10n.t("Edit", "Düzenle")) {
                         AppCoordinator.shared.openEditor(for: selectedItems)
                     }
                     Menu {
-                        Button("PNG olarak kaydet…") { export(selectedItems, as: .png) }
-                        Button("JPG olarak kaydet…") { export(selectedItems, as: .jpg) }
+                        Button(L10n.t("Save as PNG…", "PNG olarak kaydet…")) { export(selectedItems, as: .png) }
+                        Button(L10n.t("Save as JPG…", "JPG olarak kaydet…")) { export(selectedItems, as: .jpg) }
                     } label: {
                         Image(systemName: "square.and.arrow.down")
                     }
                     .menuStyle(.borderlessButton)
                     .menuIndicator(.hidden)
                     .fixedSize()
-                    .help("Kaydet")
-                    BarIcon(symbol: "trash", help: "Sil") { delete(selection) }
+                    .help(L10n.t("Save", "Kaydet"))
+                    BarIcon(symbol: "trash", help: L10n.t("Delete", "Sil")) { delete(selection) }
                 }
                 .disabled(selection.isEmpty)
-                Button("Bitti") {
+                Button(L10n.t("Done", "Bitti")) {
                     selecting = false
                     selection = []
                 }
@@ -98,11 +98,11 @@ struct ArchiveView: View {
                 .font(.system(size: 11, weight: .medium))
                 .keyboardShortcut(.cancelAction)
             } else {
-                Text("Arşiv")
+                Text(L10n.t("Archive", "Arşiv"))
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.secondary)
                 Spacer()
-                BarIcon(symbol: "checkmark.circle", help: "Seç") { selecting = true }
+                BarIcon(symbol: "checkmark.circle", help: L10n.t("Select", "Seç")) { selecting = true }
                     .disabled(store.items.isEmpty)
                 SettingsMenu(store: store)
             }
@@ -141,17 +141,17 @@ struct ArchiveView: View {
 
     @ViewBuilder
     private func contextMenu(for item: ArchiveItem) -> some View {
-        Button("Düzenle") { AppCoordinator.shared.openEditor(for: [item]) }
-        Button("Kopyala") {
+        Button(L10n.t("Edit", "Düzenle")) { AppCoordinator.shared.openEditor(for: [item]) }
+        Button(L10n.t("Copy", "Kopyala")) {
             if let img = store.cgImage(for: item) { ImageIOHelper.copyToPasteboard(img) }
         }
-        Button("PNG olarak kaydet…") { export([item], as: .png) }
-        Button("JPG olarak kaydet…") { export([item], as: .jpg) }
-        Button("Finder'da göster") {
+        Button(L10n.t("Save as PNG…", "PNG olarak kaydet…")) { export([item], as: .png) }
+        Button(L10n.t("Save as JPG…", "JPG olarak kaydet…")) { export([item], as: .jpg) }
+        Button(L10n.t("Show in Finder", "Finder'da göster")) {
             NSWorkspace.shared.activateFileViewerSelecting([store.fileURL(for: item)])
         }
         Divider()
-        Button("Sil", role: .destructive) { delete([item.id]) }
+        Button(L10n.t("Delete", "Sil"), role: .destructive) { delete([item.id]) }
     }
 
     private var emptyState: some View {
@@ -159,7 +159,7 @@ struct ArchiveView: View {
             Image(systemName: "photo.stack")
                 .font(.system(size: 28, weight: .light))
                 .foregroundStyle(.tertiary)
-            Text("Arşiv boş")
+            Text(L10n.t("Archive is empty", "Arşiv boş"))
                 .font(.system(size: 12, weight: .medium))
                 .foregroundStyle(.secondary)
         }
@@ -184,8 +184,8 @@ struct ArchiveView: View {
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
         panel.canCreateDirectories = true
-        panel.prompt = "Buraya Kaydet"
-        panel.message = "\(items.count) görüntü \(format.title) olarak kaydedilecek"
+        panel.prompt = L10n.t("Save Here", "Buraya Kaydet")
+        panel.message = L10n.t("\(items.count) images will be saved as \(format.title)", "\(items.count) görüntü \(format.title) olarak kaydedilecek")
         guard panel.runModal() == .OK, let dir = panel.url else { return }
         let images = items.compactMap { item in store.cgImage(for: item).map { (item.createdAt, $0) } }
         do {
@@ -199,11 +199,13 @@ struct ArchiveView: View {
     private func delete(_ ids: Set<UUID>) {
         guard !ids.isEmpty else { return }
         let alert = NSAlert()
-        alert.messageText = ids.count == 1 ? "Ekran görüntüsü silinsin mi?" : "\(ids.count) ekran görüntüsü silinsin mi?"
-        alert.informativeText = "Bu işlem geri alınamaz."
+        alert.messageText = ids.count == 1
+            ? L10n.t("Delete this screenshot?", "Ekran görüntüsü silinsin mi?")
+            : L10n.t("Delete \(ids.count) screenshots?", "\(ids.count) ekran görüntüsü silinsin mi?")
+        alert.informativeText = L10n.t("This can't be undone.", "Bu işlem geri alınamaz.")
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "Sil").hasDestructiveAction = true
-        alert.addButton(withTitle: "Vazgeç")
+        alert.addButton(withTitle: L10n.t("Delete", "Sil")).hasDestructiveAction = true
+        alert.addButton(withTitle: L10n.t("Cancel", "Vazgeç"))
         guard alert.runModal() == .alertFirstButtonReturn else { return }
         store.delete(ids)
         selection.subtract(ids)
@@ -270,7 +272,7 @@ private struct ThumbnailCell: View {
 
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
-        f.locale = Locale(identifier: "tr_TR")
+        f.locale = L10n.locale
         f.dateFormat = "d MMM, HH:mm"
         return f
     }()
@@ -324,7 +326,7 @@ private struct ThumbnailCell: View {
         .onDrag {
             NSItemProvider(contentsOf: store.fileURL(for: item)) ?? NSItemProvider()
         }
-        .help("Düzenlemek için tıklayın · Masaüstüne sürükleyebilirsiniz")
+        .help(L10n.t("Click to edit · Drag to your desktop", "Düzenlemek için tıklayın · Masaüstüne sürükleyebilirsiniz"))
         .task(id: item.modifiedAt) {
             image = await store.thumbnail(for: item)
         }
@@ -337,10 +339,10 @@ private struct SettingsMenu: View {
 
     var body: some View {
         Menu {
-            Button("Arşiv klasörünü aç") {
+            Button(L10n.t("Open Archive Folder", "Arşiv klasörünü aç")) {
                 NSWorkspace.shared.open(store.directory)
             }
-            Toggle("Oturum açılışında başlat", isOn: Binding(
+            Toggle(L10n.t("Open at Login", "Oturum açılışında başlat"), isOn: Binding(
                 get: { launchAtLogin },
                 set: { newValue in
                     do {
@@ -352,7 +354,7 @@ private struct SettingsMenu: View {
                 }
             ))
             Divider()
-            Button("Elva'dan Çık") { NSApp.terminate(nil) }
+            Button(L10n.t("Quit Elva", "Elva'dan Çık")) { NSApp.terminate(nil) }
         } label: {
             Image(systemName: "gearshape")
                 .font(.system(size: 12))

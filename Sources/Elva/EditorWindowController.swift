@@ -94,13 +94,13 @@ final class EditorWindowController: NSWindowController, NSWindowDelegate {
         let modified = model.documents.filter(\.isModified).count
         guard modified > 0 else { return true }
         let alert = NSAlert()
-        alert.messageText = "Kaydedilmemiş çizimler var"
+        alert.messageText = L10n.t("You have unsaved drawings", "Kaydedilmemiş çizimler var")
         alert.informativeText = modified == 1
-            ? "Pencereyi kapatırsanız çizimler kaybolacak."
-            : "\(modified) görüntüdeki çizimler kaybolacak."
-        alert.addButton(withTitle: "Arşivle ve Kapat")
-        alert.addButton(withTitle: "Vazgeç")
-        alert.addButton(withTitle: "Kaydetmeden Kapat").hasDestructiveAction = true
+            ? L10n.t("If you close the window, your drawings will be lost.", "Pencereyi kapatırsanız çizimler kaybolacak.")
+            : L10n.t("Drawings on \(modified) images will be lost.", "\(modified) görüntüdeki çizimler kaybolacak.")
+        alert.addButton(withTitle: L10n.t("Archive and Close", "Arşivle ve Kapat"))
+        alert.addButton(withTitle: L10n.t("Cancel", "Vazgeç"))
+        alert.addButton(withTitle: L10n.t("Close Without Saving", "Kaydetmeden Kapat")).hasDestructiveAction = true
         switch alert.runModal() {
         case .alertFirstButtonReturn:
             model.archiveAll()

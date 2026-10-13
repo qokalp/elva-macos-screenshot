@@ -3,7 +3,12 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleDevelopmentRegion</key>
-    <string>tr</string>
+    <string>en</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+        <string>en</string>
+        <string>tr</string>
+    </array>
     <key>CFBundleExecutable</key>
     <string>Elva</string>
     <key>CFBundleIdentifier</key>
@@ -46,6 +51,6 @@
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>NSScreenCaptureUsageDescription</key>
-    <string>Elva ekran görüntüsü alabilmek için ekran kaydı iznine ihtiyaç duyar.</string>
+    <string>Elva needs screen recording permission to take screenshots.</string>
 </dict>
 </plist>

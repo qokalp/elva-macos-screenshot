@@ -63,8 +63,8 @@ enum ImageIOHelper {
 
     static func fileBaseName(for date: Date) -> String {
         let f = DateFormatter()
-        f.locale = Locale(identifier: "tr_TR")
+        f.locale = L10n.locale
         f.dateFormat = "yyyy-MM-dd HH.mm.ss"
-        return "Ekran Görüntüsü \(f.string(from: date))"
+        return L10n.t("Screenshot", "Ekran Görüntüsü") + " " + f.string(from: date)
     }
 }

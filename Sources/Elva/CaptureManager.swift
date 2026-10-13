@@ -97,10 +97,12 @@ final class CaptureManager {
 
         NSApp.activate()
         let alert = NSAlert()
-        alert.messageText = "Ekran kaydı izni gerekli"
-        alert.informativeText = "Sistem Ayarları › Gizlilik ve Güvenlik › Ekran ve Sistem Sesi Kaydı bölümünden \(AppInfo.name) uygulamasına izin verin. Listede zaten varsa kaldırıp yeniden ekleyin, ardından uygulamayı yeniden başlatın."
-        alert.addButton(withTitle: "Sistem Ayarlarını Aç")
-        alert.addButton(withTitle: "Vazgeç")
+        alert.messageText = L10n.t("Screen recording permission required", "Ekran kaydı izni gerekli")
+        alert.informativeText = L10n.t(
+            "Allow \(AppInfo.name) under System Settings › Privacy & Security › Screen & System Audio Recording. If it's already in the list, remove it and add it again, then restart the app.",
+            "Sistem Ayarları › Gizlilik ve Güvenlik › Ekran ve Sistem Sesi Kaydı bölümünden \(AppInfo.name) uygulamasına izin verin. Listede zaten varsa kaldırıp yeniden ekleyin, ardından uygulamayı yeniden başlatın.")
+        alert.addButton(withTitle: L10n.t("Open System Settings", "Sistem Ayarlarını Aç"))
+        alert.addButton(withTitle: L10n.t("Cancel", "Vazgeç"))
         if alert.runModal() == .alertFirstButtonReturn,
            let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture") {
             NSWorkspace.shared.open(url)
@@ -110,7 +112,7 @@ final class CaptureManager {
     private func showError(_ error: Error) {
         NSApp.activate()
         let alert = NSAlert()
-        alert.messageText = "Ekran görüntüsü alınamadı"
+        alert.messageText = L10n.t("Couldn't take a screenshot", "Ekran görüntüsü alınamadı")
         alert.informativeText = error.localizedDescription
         alert.runModal()
     }

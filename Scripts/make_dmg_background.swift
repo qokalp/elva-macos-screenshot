@@ -45,12 +45,18 @@ func render(scale: CGFloat) -> Data {
     head.lineJoinStyle = .round
     head.stroke()
 
-    // Alt açıklama
-    let hint = NSAttributedString(string: "Kurmak için uygulamayı Applications klasörüne sürükleyin", attributes: [
-        .font: NSFont.systemFont(ofSize: 13, weight: .regular),
-        .foregroundColor: NSColor(calibratedWhite: 0.4, alpha: 1),
-    ])
-    hint.draw(at: NSPoint(x: (size.width - hint.size().width) / 2, y: 56))
+    // Alt açıklama (İngilizce + Türkçe)
+    let lines: [(String, CGFloat, NSColor)] = [
+        ("Drag the app into the Applications folder to install", 66, NSColor(calibratedWhite: 0.35, alpha: 1)),
+        ("Kurmak için uygulamayı Applications klasörüne sürükleyin", 44, NSColor(calibratedWhite: 0.5, alpha: 1)),
+    ]
+    for (text, y, color) in lines {
+        let str = NSAttributedString(string: text, attributes: [
+            .font: NSFont.systemFont(ofSize: 13, weight: .regular),
+            .foregroundColor: color,
+        ])
+        str.draw(at: NSPoint(x: (size.width - str.size().width) / 2, y: y))
+    }
 
     NSGraphicsContext.restoreGraphicsState()
     return rep.representation(using: .png, properties: [:])!

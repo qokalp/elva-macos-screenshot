@@ -205,8 +205,8 @@ final class SelectionView: NSView {
                 ctx.restoreGState()
             }
             let hint = mode == .lasso
-                ? "Lasso: serbest çizerek alan seçin  ·  Esc ile iptal"
-                : "Kare seçim: sürükleyerek alan seçin  ·  Esc ile iptal"
+                ? L10n.t("Lasso: draw freely to select an area  ·  Esc to cancel", "Lasso: serbest çizerek alan seçin  ·  Esc ile iptal")
+                : L10n.t("Rectangle: drag to select an area  ·  Esc to cancel", "Kare seçim: sürükleyerek alan seçin  ·  Esc ile iptal")
             drawHint(hint)
         }
     }

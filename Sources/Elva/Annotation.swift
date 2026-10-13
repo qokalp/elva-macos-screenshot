@@ -7,9 +7,9 @@ enum EditorTool: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .pen: "Kalem"
-        case .text: "Yazı"
-        case .highlighter: "Vurgulayıcı"
+        case .pen: L10n.t("Pen", "Kalem")
+        case .text: L10n.t("Text", "Yazı")
+        case .highlighter: L10n.t("Highlighter", "Vurgulayıcı")
         }
     }
 
